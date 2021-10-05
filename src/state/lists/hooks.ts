@@ -23,7 +23,11 @@ export function listToTokenMap(list: TokenList): TokenAddressMap {
 
   const map = list.tokens.reduce<TokenAddressMap>((tokenMap, tokenInfo) => {
     const token = new WrappedTokenInfo(tokenInfo, list)
+    console.log('tokenInfo:',tokenInfo)
     if (tokenMap[token.chainId]?.[token.address] !== undefined) {
+
+      console.log('tokenInfo: error',tokenInfo)
+
       console.error(new Error(`Duplicate token! ${token.address}`))
       return tokenMap
     }
@@ -75,7 +79,8 @@ function combineMaps(map1: TokenAddressMap, map2: TokenAddressMap): TokenAddress
     65: { ...map1[65], ...map2[65] }, // okex testnet
     42220: { ...map1[42220], ...map2[42220] }, // celo
     11297108109: { ...map1[11297108109], ...map2[11297108109] }, // palm
-    11297108099: { ...map1[11297108099], ...map2[11297108099] }, // palm testnet
+    11297108099: { ...map1[11297108099], ...map2[11297108099] }, // palm testnet,
+    1969: { ...map1[1969], ...map2[1969] }, // gwfu
   }
 }
 
@@ -118,6 +123,7 @@ export function useInactiveListUrls(): string[] {
 export function useCombinedActiveList(): TokenAddressMap {
   const activeListUrls = useActiveListUrls()
   const activeTokens = useCombinedTokenMapFromUrls(activeListUrls)
+  console.log('activeTokens:',TRANSFORMED_DEFAULT_TOKEN_LIST)
   return combineMaps(activeTokens, TRANSFORMED_DEFAULT_TOKEN_LIST)
 }
 
