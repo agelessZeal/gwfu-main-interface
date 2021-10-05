@@ -37,14 +37,14 @@ function AppBar(): JSX.Element {
             <div className="px-4 py-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <Image src="/logo.png" alt="GWFDex" width="32px" height="32px" />
+                  <Image src="/gwf.png" alt="GWFDex" width="32px" height="32px" />
                   <div className="hidden sm:block sm:ml-4">
                     <div className="flex space-x-2">
                       {/* <Buy /> */}
                       <NavLink href="/swap">
                         <a
                           id={`swap-nav-link`}
-                          className="p-2 text-baseline text-primary hover:text-high-emphesis focus:text-high-emphesis md:p-3 whitespace-nowrap"
+                          className="p-2 text-baseline text-blue hover:text-cyan-blue focus:text-blue md:p-3 whitespace-nowrap"
                         >
                           {i18n._(t`Swap`)}
                         </a>
@@ -52,7 +52,7 @@ function AppBar(): JSX.Element {
                       <NavLink href="/pool">
                         <a
                           id={`pool-nav-link`}
-                          className="p-2 text-baseline text-primary hover:text-high-emphesis focus:text-high-emphesis md:p-3 whitespace-nowrap"
+                          className="p-2 text-baseline text-blue hover:text-cyan-blue focus:text-blue md:p-3 whitespace-nowrap"
                         >
                           {i18n._(t`Pool`)}
                         </a>
@@ -213,7 +213,7 @@ function AppBar(): JSX.Element {
                       </div>
                     )}
 
-                    <div className="w-auto flex items-center rounded bg-dark-900 hover:bg-dark-800 p-0.5 whitespace-nowrap text-sm font-bold cursor-pointer select-none pointer-events-auto">
+                    <div className="w-auto flex items-center rounded bg-dark-green hover:bg-green p-0.5 whitespace-nowrap text-sm font-bold cursor-pointer select-none pointer-events-auto">
                       {account && chainId && userEthBalance && (
                         <>
                           <div className="px-3 py-2 text-primary text-bold">
@@ -223,9 +223,9 @@ function AppBar(): JSX.Element {
                       )}
                       <Web3Status />
                     </div>
-                    <div className="hidden md:block">
+                    {/* <div className="hidden md:block">
                       <LanguageSwitch />
-                    </div>
+                    </div> */}
                     {/* <More /> */}
                   </div>
                 </div>
