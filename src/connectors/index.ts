@@ -68,6 +68,7 @@ export const injected = new InjectedConnector({
     65, // okex testnet
     42161, // arbitrum
     42220, // celo
-    11297108109, // palm
+    11297108109, // palm,
+    1969, // palm
   ],
 })
