@@ -73,6 +73,8 @@ const xDaiLogo =
 const CeloLogo = 'https://raw.githubusercontent.com/sushiswap/icons/master/token/celo.jpg'
 const PalmLogo = 'https://raw.githubusercontent.com/sushiswap/icons/master/token/palm.jpg'
 
+const GWFULogo = "/gwf.png"
+
 const LOGO: { readonly [chainId in ChainId]?: string } = {
   [ChainId.MAINNET]: EthereumLogo,
   [ChainId.FANTOM]: FantomLogo,
@@ -96,6 +98,7 @@ const LOGO: { readonly [chainId in ChainId]?: string } = {
   [ChainId.CELO]: CeloLogo,
   [ChainId.PALM]: PalmLogo,
   [ChainId.PALM_TESTNET]: PalmLogo,
+  [ChainId.GWFU]: GWFULogo,
 }
 
 interface CurrencyLogoProps {
@@ -136,9 +139,16 @@ const CurrencyLogo: FunctionComponent<CurrencyLogoProps> = ({
       return defaultUrls
     }
   }, [currency, uriLocations])
+
+  if(currency.chainId === ChainId.GWFU){
+    if (currency.isNative || currency.equals(WNATIVE[currency.chainId])) {
+      return <Image src="/gwfu.png" width={size} height={size} alt={currency?.symbol} {...rest} />
+    }
+  }
+
   if (currency instanceof WrappedTokenInfo) {
     if (currency.tokenInfo.name === 'GWF') {
-      return <Image src="/logo.png" width={size} height={size} alt={currency?.symbol} {...rest} />
+      return <Image src="/gwf.png" width={size} height={size} alt={currency?.symbol} {...rest} />
     }
   }
 
