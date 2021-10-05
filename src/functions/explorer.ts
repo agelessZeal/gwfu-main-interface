@@ -176,6 +176,17 @@ const builders = {
         return `${prefix}/${type}/${data}`
     }
   },
+  gwf: (chainName: string, data: string, type: 'transaction' | 'token' | 'address' | 'block') => {
+    const prefix = 'https://explorer.gwf.io/'
+    switch (type) {
+      case 'transaction':
+        return `${prefix}/tx/${data}`
+      case 'address':
+        return `${prefix}/address/${data}`
+      default:
+        return `${prefix}/${type}/${data}`
+    }
+  },
 }
 
 interface ChainObject {
@@ -285,6 +296,10 @@ const chains: ChainObject = {
   [ChainId.PALM]: {
     chainName: '',
     builder: builders.palm,
+  },
+  [ChainId.GWFU]: {
+    chainName: '',
+    builder: builders.gwf,
   },
 }
 
