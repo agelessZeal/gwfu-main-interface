@@ -177,7 +177,7 @@ const builders = {
     }
   },
   gwf: (chainName: string, data: string, type: 'transaction' | 'token' | 'address' | 'block') => {
-    const prefix = 'https://explorer.gwf.io/'
+    const prefix = 'https://explorer.gwf.io'
     switch (type) {
       case 'transaction':
         return `${prefix}/tx/${data}`
