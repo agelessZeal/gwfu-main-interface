@@ -44,7 +44,7 @@ function AppBar(): JSX.Element {
                       <NavLink href="/swap">
                         <a
                           id={`swap-nav-link`}
-                          className="p-2 text-baseline text-blue hover:text-cyan-blue focus:text-blue md:p-3 whitespace-nowrap"
+                          className="p-2 text-baseline text-blue hover:text-cyan-blue focus:font-bold md:p-3 whitespace-nowrap"
                         >
                           {i18n._(t`Swap`)}
                         </a>
@@ -52,7 +52,7 @@ function AppBar(): JSX.Element {
                       <NavLink href="/pool">
                         <a
                           id={`pool-nav-link`}
-                          className="p-2 text-baseline text-blue hover:text-cyan-blue focus:text-blue md:p-3 whitespace-nowrap"
+                          className="p-2 text-baseline text-blue hover:text-cyan-blue focus:font-bold md:p-3 whitespace-nowrap"
                         >
                           {i18n._(t`Pool`)}
                         </a>
