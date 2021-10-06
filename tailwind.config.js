@@ -19,7 +19,7 @@ module.exports = {
           r: 'to right',
         },
         colors: {
-          'blue-pink': ['#27B0E6', '#FA52A0'],
+          'blue-pink': ['#27B0E6', '#46a24a'],
           'pink-red-light-brown': ['#FE5A75', '#FEC464'],
         },
         background: {
@@ -37,13 +37,16 @@ module.exports = {
       },
       colors: {
         purple: '#a755dd',
-        blue: '#0993ec',
+        blue: '#53aa57',
         pink: '#10181e',
-        green: '#7cff6b',
+        green: '#53aa57',
         red: '#ff3838',
         yellow: '#ffd166',
-
+        'dark-green':'#44a148',
+        'middle-green':'#7cc27f',
+        'white-green':'#c3edc3',
         'opaque-blue': '#0993ec80',
+        'opaque-green': '#68b66b80',
         'opaque-pink': '#10181e80',
         'pink-red': '#FE5A75',
         'light-brown': '#FEC464',
@@ -61,7 +64,7 @@ module.exports = {
         'low-emphesis': '#575757',
         primary: '#BFBFBF',
         secondary: '#7F7F7F',
-        'high-emphesis': '#E3E3E3',
+        'high-emphesis': '#3171e7',
       },
       lineHeight: {
         '48px': '48px',
@@ -153,8 +156,13 @@ module.exports = {
       addUtilities({
         '.header-border-b': {
           background:
-            'linear-gradient(to right, rgba(39, 176, 230, 0.2) 0%, rgba(250, 82, 160, 0.2) 100%) left bottom no-repeat',
+            'linear-gradient(to right, rgba(194, 236, 195, 0.2) 0%, rgba(68, 161, 72, 0.2) 100%) left bottom no-repeat',
           backgroundSize: '100% 1px',
+        },
+        '.main-background': {
+          background:
+            'linear-gradient(to right, rgba(194, 236, 195, 0.2) 0%, rgba(68, 161, 72, 0.2) 100%) left top no-repeat',
+          backgroundSize: '100% 100%',
         },
       })
     }),
