@@ -268,7 +268,7 @@ export function useERC20Permit(
 
 const REMOVE_V2_LIQUIDITY_PERMIT_INFO: PermitInfo = {
   version: '1',
-  name: 'GWFDex LP Token',
+  name: 'Summit LP Token',
   type: PermitType.AMOUNT,
 }
 
