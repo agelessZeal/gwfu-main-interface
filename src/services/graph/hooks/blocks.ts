@@ -52,6 +52,8 @@ export function useMassBlocks(timestamps: number[] | string[], swrConfig = undef
 export function useAverageBlockTime(swrConfig = undefined) {
   const { chainId } = useActiveWeb3React()
 
+  return 1/6;
+
   if (chainId === ChainId.AVALANCHE) {
     return 1.6
   }
