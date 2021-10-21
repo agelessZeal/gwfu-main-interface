@@ -57,13 +57,24 @@ function AppBar(): JSX.Element {
                           {i18n._(t`Pool`)}
                         </a>
                       </NavLink>
-                      {chainId && featureEnabled(Feature.LIQUIDITY_MINING, chainId) && (
+                      {chainId &&  chainId === ChainId.GWFU&& (
                         <NavLink href={'/farm'}>
                           <a
                             id={`farm-nav-link`}
-                            className="p-2 text-baseline text-primary hover:text-high-emphesis focus:text-high-emphesis md:p-3 whitespace-nowrap"
+                            className="p-2 text-baseline text-blue hover:text-cyan-blue focus:font-bold md:p-3 whitespace-nowrap"
                           >
                             {i18n._(t`Farm`)}
+                          </a>
+                        </NavLink>
+                      )}
+
+                      {chainId &&  chainId === ChainId.GWFU&& (
+                        <NavLink href={'/farm'}>
+                          <a
+                            id={`farm-nav-link`}
+                            className="p-2 text-baseline text-blue hover:text-cyan-blue focus:font-bold md:p-3 whitespace-nowrap"
+                          >
+                            {i18n._(t`Stake`)}
                           </a>
                         </NavLink>
                       )}
