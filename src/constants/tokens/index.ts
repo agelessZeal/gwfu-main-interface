@@ -228,6 +228,15 @@ export const SUMMIT: ChainTokenMap = {
   // [ChainId.HECO]: new Token(ChainId.HECO, SUSHI_ADDRESS[ChainId.HECO], 18, 'SUSHI', 'SushiToken'),
 }
 
+export const WGWFU: ChainTokenMap = {
+  [ChainId.GWFU]: new Token(ChainId.GWFU, '0xfbc8877fde8B6Bd8176584aE0dEA9982e1611504', 18, 'WGWFU', 'Wrapped GWFU'),
+}
+
+export const GWF: ChainTokenMap = {
+  [ChainId.GWFU]: new Token(ChainId.GWFU, '0x41F6A4F5A5Eb10a8B8e84563B641BC3Dd02D5d49', 18, 'GWF', 'GWF'),
+}
+
+
 export const WETH9_EXTENDED: { [chainId: number]: Token } = {
   ...WETH9,
   [SupportedChainId.ARBITRUM_TESTNET]: new Token(

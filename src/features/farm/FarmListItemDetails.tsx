@@ -202,7 +202,7 @@ const FarmListItem = ({ farm }) => {
                 setPendingTx(false)
               }}
             >
-              {i18n._(t`Harvest ${formatNumber(pendingSummit.multiply(TWO).toFixed(18))} SUMMIT ${
+              {i18n._(t`Harvest ${formatNumber(pendingSummit.toFixed(18))} GWFU ${
                 farm.rewards.length > 1 ? `& ${formatNumber(reward)} ${farm.rewards[1].token}` : null
               }
                 `)}

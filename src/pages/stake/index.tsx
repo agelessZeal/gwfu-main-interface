@@ -8,6 +8,8 @@ import {
   useEthPrice,
   useFarmPairAddresses,
   useFarms,
+  useGWFPrice,
+  useGWFUPrice,
   useKashiPairs,
   useMasterChefV1SushiPerBlock,
   useMasterChefV1TotalAllocPoint,
@@ -72,19 +74,15 @@ function Farm(): JSX.Element {
 
   // TODO: Obviously need to sort this out but this is fine for time being,
   // prices are only loaded when needed for a specific network
-  // const [sushiPrice, ethPrice, maticPrice, stakePrice, onePrice] = [
-  //   useAvaxPrice(),
-  //   useEthPrice(),
-  //   useMaticPrice(),
-  //   useStakePrice(),
-  //   useOnePrice(),
-  // ]
+  const [gwfuPrice,gwfPrice] = [
+    useGWFUPrice(),
+    useGWFPrice(),
+  ]
 
-  const sushiPrice = 0.12;
   const testFarm = {
     accSushiPerShare: '',
     allocPoint: 100,
-    balance: 316227765016,
+    balance: 3162277456463453400985,
     chef: 0,
     id: '0',
     lastRewardTime: 1631266290,
@@ -93,7 +91,7 @@ function Farm(): JSX.Element {
       totalAllocPoint: 200,
     },
     pair: '0x41F6A4F5A5Eb10a8B8e84563B641BC3Dd02D5d49',
-    slpBalance: 8194046008108,
+    slpBalance: 81940460081,
     userCount: '0',
     rewarder: {
       id: '0x201c900BBfEC89D9d9297c1dF8F187f07F99f8d7',
@@ -131,7 +129,11 @@ function Farm(): JSX.Element {
       symbol: 'GWF',
       name: 'GWF',
       icon: "/gwf.png",
-      type
+      type,
+      totalSupply: "316227734",
+      price:gwfPrice
+
+
     }
     // swapPair || kashiPair
 
@@ -150,7 +152,7 @@ function Farm(): JSX.Element {
         icon: "/gwfu.png",
         rewardPerBlock,
         rewardPerDay: rewardPerBlock * blocksPerDay,
-        rewardPrice: sushiPrice,
+        rewardPrice: gwfuPrice,
       }
 
       const defaultRewards = [defaultReward]
@@ -162,7 +164,7 @@ function Farm(): JSX.Element {
 
     const balance = Number(pool.balance / 1e18) // swapPair ? Number(pool.balance / 1e18) : pool.balance / 10 ** kashiPair.token0.decimals
 
-    const tvl = (balance / Number(pair.totalSupply)) * Number(pair.reserveUSD)
+    const tvl = balance * Number(pair.price)
  
     const roiPerBlock =
       rewards.reduce((previousValue, currentValue) => {
@@ -177,14 +179,8 @@ function Farm(): JSX.Element {
 
     const roiPerYear = roiPerMonth * 12
 
-    const position = positions.find((position) => position.id === pool.id && position.chef === pool.chef)
-
-    
-  console.log('rewardper:',rewards)
-
     return {
       ...pool,
-      ...position,
       pair: {
         ...pair,
         decimals: 18,

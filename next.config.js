@@ -74,10 +74,10 @@ module.exports = withBundleAnalyzer(
     },
     async rewrites() {
       return [
-        {
-          source: '/stake',
-          destination: '/bar',
-        },
+        // {
+        //   source: '/stake',
+        //   destination: '/bar',
+        // },
         {
           source: '/add/:token*',
           destination: '/exchange/add/:token*',

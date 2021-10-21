@@ -7,12 +7,20 @@ import Image from '../../components/Image'
 import { PairType } from './enum'
 import React from 'react'
 import { useCurrency } from '../../hooks/Tokens'
+import CurrencyLogo from '../../components/CurrencyLogo'
+import { WrappedTokenInfo } from '../../state/lists/wrappedTokenInfo'
 
 const FarmListItem = ({ farm, ...rest }) => {
-  const token0 = useCurrency(farm.pair.token0.id)
-  const token1 = useCurrency(farm.pair.token1.id)
+  const token0 = useCurrency( farm?.pair.type === PairType.SINGLE ? farm.pair.id: farm?.pair?.token0?.id)
+  const token1 = useCurrency(farm?.pair?.token1?.id)
 
-  console.log('FarmListItem:', farm, token0, token1)
+  console.log('FarmListItemInfo:', farm, token0, token1)
+
+  let tokenoSymbol = farm?.pair?.token1?.symbol;
+
+  if(token0 instanceof WrappedTokenInfo){
+    tokenoSymbol = token0.tokenInfo.symbol
+  }
 
   return (
     <Disclosure {...rest}>
@@ -28,12 +36,21 @@ const FarmListItem = ({ farm, ...rest }) => {
               <div className="flex col-span-2 space-x-4 md:col-span-1">
                 {token1 && token0 && <DoubleLogo currency0={token0} currency1={token1} size={40} />}
 
+                {
+                  farm.pair.type === PairType.SINGLE &&  <CurrencyLogo currency={token0} size={ '40px'} />
+                }
+
                 <div className="flex flex-col justify-center">
                   <div>
-                    <span className="font-bold">{farm?.pair?.token0?.symbol}</span>/
-                    <span className={farm?.pair?.type === PairType.KASHI ? 'font-thin' : 'font-bold'}>
-                      {farm?.pair?.token1?.symbol}
-                    </span>
+                    <span className="font-bold">{ tokenoSymbol}</span> 
+                    { farm.pair.type !== PairType.SINGLE && '/'}
+                    {
+                      farm.pair.type!== PairType.SINGLE &&(                    
+                        <span className={farm?.pair?.type === PairType.KASHI ? 'font-thin' : 'font-bold'}>
+                          {farm?.pair?.token1?.symbol}
+                        </span>)
+                    }
+                    
                   </div>
                   {/* {farm?.pair?.type === PairType.SWAP && (
                     <div className="text-xs md:text-base text-secondary">SushiSwap Farm</div>

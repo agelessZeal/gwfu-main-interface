@@ -8,6 +8,8 @@ import {
   useEthPrice,
   useFarmPairAddresses,
   useFarms,
+  useGWFPrice,
+  useGWFUPrice,
   useKashiPairs,
   useMasterChefV1SushiPerBlock,
   useMasterChefV1TotalAllocPoint,
@@ -62,8 +64,6 @@ function Farm(): JSX.Element {
 
   // const pfarms = useFarms()
 
-  const positions = usePositions()
-
   const averageBlockTime = useAverageBlockTime()
 
   // const masterChefV1TotalAllocPoint = useMasterChefV1TotalAllocPoint()
@@ -71,20 +71,15 @@ function Farm(): JSX.Element {
   // const masterChefV1SushiPerBlock = useMasterChefV1SushiPerBlock()
 
   // TODO: Obviously need to sort this out but this is fine for time being,
-  // prices are only loaded when needed for a specific network
-  // const [sushiPrice, ethPrice, maticPrice, stakePrice, onePrice] = [
-  //   useAvaxPrice(),
-  //   useEthPrice(),
-  //   useMaticPrice(),
-  //   useStakePrice(),
-  //   useOnePrice(),
-  // ]
 
-  const sushiPrice = 0.12;
+  const [gwfuPrice] = [
+    useGWFUPrice(),
+  ]
+
   const testFarm = {
     accSushiPerShare: '',
     allocPoint: 100,
-    balance: 316227765016,
+    balance: 316227765018579,
     chef: 0,
     id: '1',
     lastRewardTime: 1631266290,
@@ -173,7 +168,7 @@ function Farm(): JSX.Element {
         icon: "/gwfu.png",
         rewardPerBlock,
         rewardPerDay: rewardPerBlock * blocksPerDay,
-        rewardPrice: sushiPrice,
+        rewardPrice: gwfuPrice,
       }
 
       const defaultRewards = [defaultReward]
@@ -200,14 +195,9 @@ function Farm(): JSX.Element {
 
     const roiPerYear = roiPerMonth * 12
 
-    const position = positions.find((position) => position.id === pool.id && position.chef === pool.chef)
-
     
-  console.log('rewardper:',rewards)
-
     return {
       ...pool,
-      ...position,
       pair: {
         ...pair,
         decimals: 18,

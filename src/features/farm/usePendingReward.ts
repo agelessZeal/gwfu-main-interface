@@ -12,6 +12,7 @@ import Fraction from '../../entities/Fraction'
 import { getContract } from '../../functions'
 import { useActiveWeb3React } from '../../hooks/useActiveWeb3React'
 import { useBlockNumber } from '../../state/application/hooks'
+import { useChefContract } from './hooks'
 
 const REWARDERS = {
   [ChainId.MAINNET]: 'some',
@@ -42,6 +43,8 @@ const usePending = (farm) => {
 
   const summitComplexRewarder = useSummitComplexRewarderContract(farm?.rewarder?.id)
 
+  const masterChefContract = useChefContract(Chef.MASTERCHEF)
+
   const contract = useMemo(
     () => ({
       [ChainId.MAINNET]: cloneRewarder,
@@ -56,7 +59,7 @@ const usePending = (farm) => {
   useEffect(() => {
     async function fetchPendingReward() {
       try {
-        const pending = await contract[chainId]?.pendingTokens(farm.id, account, '0')
+        const pending = await masterChefContract.pendingReward(farm.id, account)
         // todo: do not assume [0] or that rewardToken has 18 decimals (only works w/ mastechefv2 currently)
         const formatted = farm.rewardToken
           ? Fraction.from(

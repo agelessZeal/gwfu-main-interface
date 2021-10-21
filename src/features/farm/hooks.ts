@@ -1,6 +1,7 @@
 import {
   ChainId,
   CurrencyAmount,
+  GWFU,
   JSBI,
   MASTERCHEF_ADDRESS,
   MASTERCHEF_V2_ADDRESS,
@@ -17,7 +18,7 @@ import {
 } from '../../hooks/useContract'
 
 import { Contract } from '@ethersproject/contracts'
-import { SUMMIT, SUSHI } from '../../constants'
+import { SUMMIT, SUSHI, WGWFU } from '../../constants'
 import { Zero } from '@ethersproject/constants'
 import concat from 'lodash/concat'
 import { useActiveWeb3React } from '../../hooks/useActiveWeb3React'
@@ -84,7 +85,7 @@ export function useUserInfo(farm, token) {
 export function usePendingSummit(farm) {
   const { account, chainId } = useActiveWeb3React()
 
-  const contract = useSummitMiniChefContract()
+  const contract = useMasterChefContract()
 
   const args = useMemo(() => {
     if (!account) {
@@ -93,13 +94,13 @@ export function usePendingSummit(farm) {
     return [String(farm.id), String(account)]
   }, [farm, account])
 
-  const result = useSingleCallResult(args ? contract : null, 'pendingSummit', args)?.result
+  const result = useSingleCallResult(args ? contract : null, 'pendingReward', args)?.result
 
   const value = result?.[0]
 
   const amount = value ? JSBI.BigInt(value.toString()) : undefined
 
-  return amount ? CurrencyAmount.fromRawAmount(SUMMIT[chainId], amount) : undefined
+  return amount ? CurrencyAmount.fromRawAmount(WGWFU[chainId], amount) : undefined
 }
 
 export function usePendingSushi(farm) {
@@ -114,7 +115,7 @@ export function usePendingSushi(farm) {
     return [String(farm.id), String(account)]
   }, [farm, account])
 
-  const result = useSingleCallResult(args ? contract : null, 'pendingSushi', args)?.result
+  const result = useSingleCallResult(args ? contract : null, 'pendingReward', args)?.result
 
   const value = result?.[0]
 
@@ -155,7 +156,7 @@ export function useChefPositions(contract?: Contract | null, rewarder?: Contract
     return [...Array(numberOfPools.toNumber()).keys()].map((pid) => [String(pid), String(account)])
   }, [numberOfPools, account])
 
-  const pendingSushi = useSingleContractMultipleData(args ? contract : null, 'pendingSushi', args)
+  const pendingSushi = useSingleContractMultipleData(args ? contract : null, 'pendingReward', args)
 
   const userInfo = useSingleContractMultipleData(args ? contract : null, 'userInfo', args)
 
@@ -194,10 +195,8 @@ export function useChefPositions(contract?: Contract | null, rewarder?: Contract
 }
 
 export function usePositions(chainId = undefined) {
-  const [masterChefV1Positions, masterChefV2Positions, miniChefPositions] = [
+  const [masterChefV1Positions] = [
     useChefPositions(useMasterChefContract(), undefined, chainId),
-    useChefPositions(useMasterChefV2Contract(), undefined, chainId),
-    useChefPositions(useMiniChefContract(), undefined, chainId),
   ]
-  return concat(masterChefV1Positions, masterChefV2Positions, miniChefPositions)
+  return concat(masterChefV1Positions)
 }

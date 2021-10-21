@@ -179,6 +179,15 @@ export function useSushiPrice(variables = undefined, swrConfig: SWRConfiguration
   return data
 }
 
+export function useGWFPrice(variables = undefined, swrConfig: SWRConfiguration = undefined) {
+  return 2;
+}
+
+export function useGWFUPrice(variables = undefined, swrConfig: SWRConfiguration = undefined) {
+  return 0.5;
+}
+
+
 export function useBundle(variables = undefined, swrConfig: SWRConfiguration = undefined) {
   const { chainId } = useActiveWeb3React()
   const { data } = useSWR(

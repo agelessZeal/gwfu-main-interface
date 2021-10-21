@@ -69,7 +69,7 @@ function AppBar(): JSX.Element {
                       )}
 
                       {chainId &&  chainId === ChainId.GWFU&& (
-                        <NavLink href={'/farm'}>
+                        <NavLink href={'/stake'}>
                           <a
                             id={`farm-nav-link`}
                             className="p-2 text-baseline text-blue hover:text-cyan-blue focus:font-bold md:p-3 whitespace-nowrap"

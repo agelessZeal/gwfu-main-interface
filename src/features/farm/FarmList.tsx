@@ -12,7 +12,7 @@ const FarmList = ({ farms, term }) => {
   const { i18n } = useLingui()
   return items ? (
     <>
-      <div className="grid grid-cols-4 text-base font-bold text-primary">
+      <div className="grid grid-cols-4 text-base font-bold text-blue">
         <div
           className="flex items-center col-span-2 px-4 cursor-pointer md:col-span-1"
           onClick={() => requestSort('symbol')}
