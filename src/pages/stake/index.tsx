@@ -86,13 +86,13 @@ function Farm(): JSX.Element {
     allocPoint: 100,
     balance: 316227765016,
     chef: 0,
-    id: '1',
+    id: '0',
     lastRewardTime: 1631266290,
     owner: {
       id: '0x962b210b559d7062b59e170f4377C20c7da4FaD8',
       totalAllocPoint: 200,
     },
-    pair: '0x545c80259391467D9f6f207d9A66a5F35ECF1c42',
+    pair: '0x41F6A4F5A5Eb10a8B8e84563B641BC3Dd02D5d49',
     slpBalance: 8194046008108,
     userCount: '0',
     rewarder: {
@@ -123,38 +123,15 @@ function Farm(): JSX.Element {
 
     // const type = swapPair ? PairType.SWAP : PairType.KASHI
 
-    const type = PairType.SWAP
+    const type = PairType.SINGLE
 
     const pair = {
       decimals: 18,
-      id: '0x545c80259391467D9f6f207d9A66a5F35ECF1c42',
-      reserve0: '1928359.887405995540289756',
-      reserve1: '1920966.04641',
-      reserveETH: '1183.351142427706157233201110976883',
-      reserveUSD: '4',
-      timestamp: '1621898381',
-      token0: {
-        derivedETH: '0.0003068283960261003490764609134664169',
-        id: '0x41F6A4F5A5Eb10a8B8e84563B641BC3Dd02D5d49',
-        name: 'GWF',
-        symbol: 'GWF',
-        totalSupply: '16840',
-      },
-      token0Price: '1.003849022219738620606344213098808',
-      token1: {
-        derivedETH: '0.0.034',
-        id: '0xfbc8877fde8B6Bd8176584aE0dEA9982e1611504',
-        name: "Wrapped GWFU",
-        symbol: "WGWFU",
-        totalSupply: '16840',
-      },
-      token1Price: '0.9961657359477946627790088931105365',
-      totalSupply: '0.000000316227765016',
-      trackedReserveETH: '1183.351142427706157233201110976883',
-      txCount: '81365',
-      type: 0,
-      untrackedVolumeUSD: '46853896.79482616671033425777223395',
-      volumeUSD: '46844749.23711596607606598865310647',
+      id: '0x41F6A4F5A5Eb10a8B8e84563B641BC3Dd02D5d49',
+      symbol: 'GWF',
+      name: 'GWF',
+      icon: "/gwf.png",
+      type
     }
     // swapPair || kashiPair
 
