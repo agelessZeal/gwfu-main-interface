@@ -45,10 +45,12 @@ const FarmListItem = ({ farm }) => {
 
   const pendingSummit = usePendingSummit(farm)
 
-  const reward = usePendingReward(farm)
+  console.log('pendingSummit:',pendingSummit,pendingSummit?.toFixed(18))
+
+  // const reward = usePendingReward(farm)
 
   const APPROVAL_ADDRESSES = {
-    [Chef.MASTERCHEF]: { [ChainId.MAINNET]: MASTERCHEF_ADDRESS[ChainId.MAINNET] },
+    [Chef.MASTERCHEF]: { [ChainId.MAINNET]: MASTERCHEF_ADDRESS[ChainId.MAINNET] ,[ChainId.GWFU]: MASTERCHEF_ADDRESS[ChainId.GWFU] },
     [Chef.MASTERCHEF_V2]: { [ChainId.MAINNET]: MASTERCHEF_V2_ADDRESS[ChainId.MAINNET] },
     [Chef.MINICHEF]: {
       [ChainId.MATIC]: MINICHEF_ADDRESS[ChainId.MATIC],
@@ -202,10 +204,7 @@ const FarmListItem = ({ farm }) => {
                 setPendingTx(false)
               }}
             >
-              {i18n._(t`Harvest ${formatNumber(pendingSummit.toFixed(18))} GWFU ${
-                farm.rewards.length > 1 ? `& ${formatNumber(reward)} ${farm.rewards[1].token}` : null
-              }
-                `)}
+              {i18n._(t`Harvest`) } {`${formatNumber(pendingSummit.toFixed(18))} GWFU`}
             </Button>
           </div>
         )}
