@@ -227,7 +227,7 @@ function AppBar(): JSX.Element {
                     <div className="w-auto flex items-center rounded bg-dark-green hover:bg-green p-0.5 whitespace-nowrap text-sm font-bold cursor-pointer select-none pointer-events-auto">
                       {account && chainId && userEthBalance && (
                         <>
-                          <div className="px-3 py-2 text-primary text-bold">
+                          <div className="px-3 py-2 text-white text-bold">
                             {userEthBalance?.toSignificant(4)} {NATIVE[chainId].symbol}
                           </div>
                         </>
