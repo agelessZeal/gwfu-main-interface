@@ -52,7 +52,6 @@ function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean):
 
 export function useAllTokens(): { [address: string]: Token } {
   const allTokens = useCombinedActiveList()
-  console.log('useAllTokens:',allTokens)
   return useTokensFromMap(allTokens, true)
 }
 

@@ -7,6 +7,7 @@ import { WrappedTokenInfo } from './wrappedTokenInfo'
 import { sortByListPriority } from '../../functions/list'
 import { useAppSelector } from '../hooks'
 import { useMemo } from 'react'
+import { ChainId } from '@sushiswap/sdk'
 
 export type TokenAddressMap = Readonly<{
   [chainId: number]: Readonly<{
@@ -23,11 +24,7 @@ export function listToTokenMap(list: TokenList): TokenAddressMap {
 
   const map = list.tokens.reduce<TokenAddressMap>((tokenMap, tokenInfo) => {
     const token = new WrappedTokenInfo(tokenInfo, list)
-    console.log('tokenInfo:',tokenInfo)
     if (tokenMap[token.chainId]?.[token.address] !== undefined) {
-
-      console.log('tokenInfo: error',tokenInfo)
-
       console.error(new Error(`Duplicate token! ${token.address}`))
       return tokenMap
     }
@@ -123,7 +120,6 @@ export function useInactiveListUrls(): string[] {
 export function useCombinedActiveList(): TokenAddressMap {
   const activeListUrls = useActiveListUrls()
   const activeTokens = useCombinedTokenMapFromUrls(activeListUrls)
-  console.log('activeTokens:',TRANSFORMED_DEFAULT_TOKEN_LIST)
   return combineMaps(activeTokens, TRANSFORMED_DEFAULT_TOKEN_LIST)
 }
 

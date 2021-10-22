@@ -14,8 +14,6 @@ const FarmListItem = ({ farm, ...rest }) => {
   const token0 = useCurrency( farm?.pair.type === PairType.SINGLE ? farm.pair.id: farm?.pair?.token0?.id)
   const token1 = useCurrency(farm?.pair?.token1?.id)
 
-  console.log('FarmListItemInfo:', farm, token0, token1)
-
   let tokenoSymbol = farm?.pair?.token1?.symbol;
 
   if(token0 instanceof WrappedTokenInfo){
